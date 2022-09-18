@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="18">
+      <module name="Auto_Math" target="18" />
+      <module name="Mathpaper" target="18" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
