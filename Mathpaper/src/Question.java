@@ -15,7 +15,7 @@ public class Question {
         ArrayList<String> suffix;
         Question q = new Question();
         q.init();
-        suffix= q.infixToSuffix(s);
+        suffix = q.infixToSuffix(s);
         res = q.calSuffix(suffix);
         System.out.println(res);
     }
