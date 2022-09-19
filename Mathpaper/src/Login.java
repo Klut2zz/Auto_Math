@@ -126,9 +126,10 @@ public class Login {
     }
   }
 
-  private void paper(int cnt,User u) throws IOException {
+  public ArrayList<String> paper(int cnt,User u) throws IOException {
     Random r = new Random();
     String[] specialSigns = {"²","√","sin","cos","tan"};
+    ArrayList<String> infixQues = new ArrayList<>();
     HashSet<String> hisQ = historyPaper(u);
 
     String path = Objects.requireNonNull(this.getClass().getResource("")).getPath() + u.getId() + "/";
@@ -147,10 +148,12 @@ public class Login {
         i--;
         continue;
       }
+      infixQues.add(question);
       question = "第" + (i + 1) + "题: " + question + "=";
       fw.write(question+"\r\n");
     }
     fw.close();
+    return infixQues;
   }
 
   private String singleQuestion(User u, Random r, String[] specialSigns) {

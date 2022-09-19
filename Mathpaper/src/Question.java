@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
 
 public class Question {
     private final Map<String, Integer> opPriority = new HashMap<>();
+
+    Question(){
+        init();
+    }
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
         String s = scan.nextLine();
@@ -106,7 +110,7 @@ public class Question {
                 Str.append(c);
             }
         }
-        Str.delete(0,1);
+        if(Str.charAt(0) == ' ') Str.delete(0,1);
         for(int i = 0;i < Str.length();i++){
             if(i+1<Str.length() && Str.charAt(i) == Str.charAt(i+1) && Str.charAt(i) ==' '){
                 Str.delete(i,i+1);

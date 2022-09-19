@@ -4,17 +4,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class MainUi extends Application{
     private Login l = new Login();
     private ConnectDB con = new ConnectDB();
+    private User currentUser = new User();
 
     public MainUi() throws SQLException {
     }
@@ -48,7 +54,8 @@ public class MainUi extends Application{
                 try {
                     if (con.login(name,psd)) {
                         System.out.println("登陆成功！");
-                        UserStage userStage = new UserStage();
+                        currentUser.setType("小学");
+                        ChooseStage chooseStage = new ChooseStage();
                         primaryStage.close();
                     } else {
                         System.out.println("登录失败！");
@@ -158,15 +165,152 @@ public class MainUi extends Application{
             return cap;
         }
     }
-    class UserStage {
+    class ChooseStage {
         private final Stage stage = new Stage();
+        private final Parent pr = FXMLLoader.load(getClass().getResource("chooseUi.fxml"));
+        private final Label showStatus = (Label) pr.lookup("#showstatus");
+        private final Button priButton = (Button) pr.lookup("#priButton");
+        private final Button midButton = (Button) pr.lookup("#midButton");
+        private final Button highButton = (Button) pr.lookup("#highButton");
+        private final Button conButton = (Button) pr.lookup("#conButton");
+        private final Button backButton = (Button) pr.lookup("#backButton");
+        private final TextField textNumber = (TextField) pr.lookup("#textNumber");
 
+        private String type = currentUser.getType();
+        private ArrayList<String> question = new ArrayList<>();
         public Stage getStage() {
             return stage;
         }
 
-        public UserStage(){
+        public ChooseStage() throws IOException {
+            stage.setTitle("选择界面");
+            stage.setScene(new Scene(pr));
 
+
+            showStatus.setText(type);
+
+            priButton.setOnAction(e -> {
+                type = "小学";
+                currentUser.setType("小学");
+                showStatus.setText(type);
+            });
+
+            midButton.setOnAction(e -> {
+                type = "初中";
+                currentUser.setType("初中");
+                showStatus.setText(type);
+            });
+
+            highButton.setOnAction(e -> {
+                type = "高中";
+                currentUser.setType("高中");
+                showStatus.setText(type);
+            });
+
+            conButton.setOnAction(e -> {
+                int quesNum = Integer.parseInt(textNumber.getText());
+                try {
+                    question = l.paper(quesNum,currentUser);
+                    ExamStage eStage = new ExamStage(question);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+
+            stage.show();
+        }
+    }
+
+    class ExamStage{
+        private final Stage stage = new Stage();
+        private final Parent pr = FXMLLoader.load(getClass().getResource("paperUi.fxml"));
+
+        private final Label questionLabel = (Label) pr.lookup("#questionLabel");
+        private final Button finishButton = (Button) pr.lookup("#finishButton");
+        private final Button nextButton = (Button) pr.lookup("#nextButton");
+        private final RadioButton toggleA = (RadioButton) pr.lookup("#toggleA");
+        private final RadioButton toggleB = (RadioButton) pr.lookup("#toggleB");
+        private final RadioButton toggleC = (RadioButton) pr.lookup("#toggleC");
+        private final RadioButton toggleD = (RadioButton) pr.lookup("#toggleD");
+        //ques为生成的题目(中缀表达式)
+        private ArrayList<String> ques;
+        //answer 用于记录答案选项
+        private ArrayList<Integer> answer = new ArrayList<>();
+        //optionsContent 存储所有的选项内容
+        private ArrayList<String[]> optionsContent = new ArrayList<>();
+        //selection 记录每个题的选择
+        private int[] selection;
+        private int curQuestion;
+        ExamStage(ArrayList<String> question) throws IOException {
+            this.ques = question;
+            selection = new int[ques.size()];
+            stage.setTitle("正在测试");
+            stage.setScene(new Scene(pr));
+            questionLabel.setText("("+(curQuestion+1)+"): "+ques.get(curQuestion));
+            optionContent();
+            finishButton.setVisible(false);
+            nextButton.setOnAction(e -> {
+                int choice = recodeChoice();
+                if(curQuestion<ques.size()-1 ){
+                    selection[curQuestion] = choice;
+                    curQuestion++;
+                    questionLabel.setText("("+(curQuestion+1)+"): "+ques.get(curQuestion));
+                    optionContent();
+                }else {
+                    finishButton.setVisible(true);
+                    selection[curQuestion] = choice;
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "当前已为最后一题");
+                    alert.showAndWait();
+                }
+            });
+
+            finishButton.setOnAction(e -> {
+                if(answer.size() == selection.length){
+                    int correct = 0;
+                    for(int i = 0;i < selection.length;i ++){
+                        if(selection[i] == answer.get(i)){
+                            correct++;
+                        }
+                    }
+                    double score = correct/selection.length;
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "本次测试的成绩是："+correct+"/"+selection.length);
+                    alert.showAndWait();
+                    stage.close();
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "请全部完成后再提交");
+                    alert.showAndWait();
+                }
+            });
+
+            stage.show();
+        }
+        public int recodeChoice(){
+            if(toggleA.isSelected()){
+                return 0;
+            }else if(toggleB.isSelected()){
+                return 1;
+            }else if(toggleC.isSelected()){
+                return 2;
+            }else if(toggleD.isSelected()){
+                return 3;
+            }else return 4;
+        }
+        public void optionContent(){
+            Question q = new Question();
+            String ans = q.calSuffix(q.infixToSuffix(ques.get(curQuestion)));
+            String[] randAns = new String[4];
+            Random r = new Random();
+            int ansIndex = r.nextInt(4);
+            randAns[ansIndex] = ans;
+            for(int i = 0;i < 4;i++){
+                if(randAns[i] == null)
+                    randAns[i] = String.valueOf(Math.random()*Double.parseDouble(ans)*(r.nextInt(5)-r.nextInt(10)));
+            }
+            answer.add(ansIndex);
+            toggleA.setText("A."+randAns[0]);
+            toggleB.setText("B."+randAns[1]);
+            toggleC.setText("C."+randAns[2]);
+            toggleD.setText("D."+randAns[3]);
         }
     }
 }
