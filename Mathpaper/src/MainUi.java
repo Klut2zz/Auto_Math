@@ -32,6 +32,7 @@ public class MainUi extends Application{
             //BorderPane root = new BorderPane();
 
             Button loginButton = (Button)root.lookup("#loginButton");
+            //loginButton.getStyleClass().setAll("btn","btn-primary");
             Button registerButton = (Button)root.lookup("#registerButton");
             TextField textId = (TextField)root.lookup("#textId");
             PasswordField textPsw = (PasswordField)root.lookup("#textPsw");
@@ -78,7 +79,8 @@ public class MainUi extends Application{
             });
 
             Scene scene = new Scene(root);
-            //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            //scene.getStylesheets().add("D:\\Java_Proj\\Auto_Math\\Mathpaper\\src\\bootstrapfx.css");
+            //scene.getStylesheets().add(getClass().getResource("bootstrapfx.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);//设置不能窗口改变大小
             primaryStage.setTitle("HNU-试卷生成软件");//设置标题
