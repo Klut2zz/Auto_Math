@@ -9,17 +9,23 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainUi extends Application{
     private Login l = new Login();
-    private ConnectDB con = new ConnectDB();
+    private ConnectDB conDB = new ConnectDB();
     private User currentUser = new User();
 
     public MainUi() throws SQLException {
@@ -37,13 +43,10 @@ public class MainUi extends Application{
             TextField textId = (TextField)root.lookup("#textId");
             PasswordField textPsw = (PasswordField)root.lookup("#textPsw");
 
-            //login
-            l.userInit();
-
             //登陆按键事件
             loginButton.setOnAction(e ->{
                 try {
-                    con = new ConnectDB();
+                    conDB = new ConnectDB();
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -53,11 +56,13 @@ public class MainUi extends Application{
                 User u = new User(name,psd,"");
                 //if (!"None".equals(l.userCheck(u).getType())) {
                 try {
-                    if (con.login(name,psd)) {
-                        System.out.println("登陆成功！");
+                    if (conDB.login(name,psd)) {
+                        //System.out.println("登录成功！");
                         currentUser.setType("小学");
+                        currentUser.setId(name);
+                        currentUser.setPsw(psd);
                         ChooseStage chooseStage = new ChooseStage();
-                        primaryStage.close();
+                        //primaryStage.close();
                     } else {
                         System.out.println("登录失败！");
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "账号或密码错误！");
@@ -71,8 +76,7 @@ public class MainUi extends Application{
             registerButton.setOnAction(e -> {
                 try {
                     RegStage regStage = new RegStage();
-                    System.out.println("注册完成");
-                    l.userInit();
+                    //System.out.println("注册完成");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -81,6 +85,7 @@ public class MainUi extends Application{
             Scene scene = new Scene(root);
             //scene.getStylesheets().add("D:\\Java_Proj\\Auto_Math\\Mathpaper\\src\\bootstrapfx.css");
             //scene.getStylesheets().add(getClass().getResource("bootstrapfx.css").toExternalForm());
+            primaryStage.getIcons().add(new Image("F:\\Auto_Math7\\Mathpaper\\image\\icon.png"));//标题logo
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);//设置不能窗口改变大小
             primaryStage.setTitle("HNU-试卷生成软件");//设置标题
@@ -124,11 +129,45 @@ public class MainUi extends Application{
                 }
             });
             regButton.setOnAction(e -> {
-                if(check()){
+                boolean flag = true;
+                try {
+                    if(conDB.checkaccount(textId.getText())){
+                        if(textPsw1.getText().trim().length()>=6&&textPsw1.getText().trim().length()<=10){
+                            if(textPsw1.getText().trim().equals(textPsw2.getText())){
+                                if(passwordcheck()){
+                                    flag = true;
+                                } else {
+                                    flag = false;
+                                    Alert alert = new Alert(Alert.AlertType.ERROR, "密码中应含有数字和大小写字母");
+                                    alert.getDialogPane().setGraphic(new ImageView("F:\\Auto_Math7\\Mathpaper\\image\\youzhezhongshi.png"));
+                                    alert.showAndWait();
+                                }
+                            } else {
+                                flag = false;
+                                Alert alert = new Alert(Alert.AlertType.ERROR, "两次输入密码不同");
+                                alert.getDialogPane().setGraphic(new ImageView("F:\\Auto_Math7\\Mathpaper\\image\\xingle.png"));
+                                alert.showAndWait();
+                            }
+                        } else {
+                            flag = false;
+                            Alert alert = new Alert(Alert.AlertType.ERROR, "密码长度应为6-10位");
+                            alert.getDialogPane().setGraphic(new ImageView("F:\\Auto_Math7\\Mathpaper\\image\\xixi.png"));
+                            alert.showAndWait();
+                        }
+                    } else {
+                        flag = false;
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "用户名已存在");
+                        alert.showAndWait();
+                    }
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                if(flag&&check()){
                     if(textCap.getText().equals(cap)){
                         String path = Objects.requireNonNull(this.getClass().getResource("")).getPath() + "\\user.txt";
                         try {
-                            con.register(textId.getText(),textPsw1.getText(),"小学");
+                            conDB.register(textId.getText(),textPsw1.getText(),"小学");
                             /*FileWriter fw = new FileWriter(path,true);
                             fw.write(textId.getText()+" "+textPsw1.getText()+" 小学 "+textEmail.getText()+"\n");
                             fw.close();
@@ -144,7 +183,8 @@ public class MainUi extends Application{
                     }
                 }
             });
-
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.getIcons().add(new Image("F:\\Auto_Math7\\Mathpaper\\image\\icon.png"));//标题logo
             stage.show();
         }
 
@@ -166,6 +206,19 @@ public class MainUi extends Application{
             mail.sendQQEmail(mail.emailAccount,mail.authCode,recAddress,cap,id);
             return cap;
         }
+
+        public boolean passwordcheck(){
+            String digitregex = "[0-9]";
+            String littleletterregex = "[a-z]";
+            String bigletterregex = "[A-Z]";
+            Pattern pd = Pattern.compile(digitregex);
+            Pattern pl = Pattern.compile(littleletterregex);
+            Pattern pb = Pattern.compile(bigletterregex);
+            Matcher md = pd.matcher(textPsw1.getText().trim());
+            Matcher ml = pl.matcher(textPsw1.getText().trim());
+            Matcher mb = pb.matcher(textPsw1.getText().trim());
+            return md.find()&&ml.find()&&mb.find();
+        }
     }
     class ChooseStage {
         private final Stage stage = new Stage();
@@ -175,10 +228,12 @@ public class MainUi extends Application{
         private final Button midButton = (Button) pr.lookup("#midButton");
         private final Button highButton = (Button) pr.lookup("#highButton");
         private final Button conButton = (Button) pr.lookup("#conButton");
+        private final Button changePswBtn = (Button) pr.lookup("#changePswBtn");
         private final Button backButton = (Button) pr.lookup("#backButton");
         private final TextField textNumber = (TextField) pr.lookup("#textNumber");
 
         private String type = currentUser.getType();
+        private String id = currentUser.getId();
         private ArrayList<String> question = new ArrayList<>();
         public Stage getStage() {
             return stage;
@@ -211,14 +266,35 @@ public class MainUi extends Application{
 
             conButton.setOnAction(e -> {
                 int quesNum = Integer.parseInt(textNumber.getText());
-                try {
-                    question = l.paper(quesNum,currentUser);
-                    ExamStage eStage = new ExamStage(question);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                if(quesNum<=30&&quesNum>=10){
+                    try {
+                        question = l.paper(quesNum,currentUser);
+                        ExamStage eStage = new ExamStage(question);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "数量应该在10-30之间");
+                    alert.getDialogPane().setGraphic(new ImageView("F:\\Auto_Math7\\Mathpaper\\image\\nixiaozi.png"));
+                    alert.showAndWait();
                 }
             });
 
+
+            changePswBtn.setOnAction(e -> {
+                try {
+                    ChangePswStage changePswStage = new ChangePswStage(id);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                //con.changePassword(con,currentUser.getId(),);
+            });
+
+            backButton.setOnAction(e -> {
+                stage.close();
+            });
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.getIcons().add(new Image("F:\\Auto_Math7\\Mathpaper\\image\\icon.png"));//标题logo
             stage.show();
         }
     }
@@ -246,7 +322,7 @@ public class MainUi extends Application{
         ExamStage(ArrayList<String> question) throws IOException {
             this.ques = question;
             selection = new int[ques.size()];
-            stage.setTitle("正在测试");
+            stage.setTitle("题目");
             stage.setScene(new Scene(pr));
             questionLabel.setText("("+(curQuestion+1)+"): "+ques.get(curQuestion));
             optionContent();
@@ -274,8 +350,9 @@ public class MainUi extends Application{
                             correct++;
                         }
                     }
-                    double score = correct/selection.length;
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "本次测试的成绩是："+correct+"/"+selection.length);
+                    double score = correct*1.0/selection.length * 100;
+                    String finalscore = String.format("%.2f",score);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "本次测试的成绩是："+finalscore);
                     alert.showAndWait();
                     stage.close();
                 }else {
@@ -283,7 +360,8 @@ public class MainUi extends Application{
                     alert.showAndWait();
                 }
             });
-
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.getIcons().add(new Image("F:\\Auto_Math7\\Mathpaper\\image\\icon.png"));//标题logo
             stage.show();
         }
         public int recodeChoice(){
@@ -313,6 +391,69 @@ public class MainUi extends Application{
             toggleB.setText("B."+randAns[1]);
             toggleC.setText("C."+randAns[2]);
             toggleD.setText("D."+randAns[3]);
+        }
+    }
+    class ChangePswStage{
+        private final Stage stage = new Stage();
+        private final Parent pr = FXMLLoader.load(getClass().getResource("changePswUI.fxml"));
+
+        private final Button changeBtn = (Button) pr.lookup("#changeBtn");
+        private final TextField oldPsw = (TextField) pr.lookup("#oldPsw");
+        private final PasswordField newPsw1 = (PasswordField) pr.lookup("#newPsw1");
+        private final PasswordField newPsw2 = (PasswordField) pr.lookup("#newPsw2");
+        ChangePswStage(String id) throws IOException {
+            stage.setTitle("修改密码");
+            stage.setScene(new Scene(pr));
+            changeBtn.setOnAction(e -> {
+                if(check()){
+                    try {
+                        conDB.changePassword(conDB.con,id,oldPsw.getText(),newPsw1.getText());
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "修改密码成功！");
+                        alert.showAndWait();
+                        stage.close();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            });
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+
+        public boolean check(){
+            if ("".equals(oldPsw.getText().trim()) || "".equals(newPsw1.getText().trim()) || "".equals(newPsw2.getText().trim())){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "请输入密码！");
+                alert.showAndWait();
+                return false;
+            }else if(!newPsw2.getText().equals(newPsw1.getText())){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "两次输入密码不一致！");
+                alert.showAndWait();
+                return false;
+            }else if(!checkPassword(newPsw1.getText())){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "请设置6-10位包含大小写字母和数字的密码！");
+                alert.showAndWait();
+                return false;
+            }
+            return true;
+        }
+
+        public boolean checkPassword(String password) {
+            //数字
+            String REG_NUMBER = ".*\\d+.*";
+            //小写字母
+            String REG_UPPERCASE = ".*[A-Z]+.*";
+            //大写字母
+            String REG_LOWERCASE = ".*[a-z]+.*";
+            //特殊符号
+            //public static final String REG_SYMBOL = ".*[~!@#$%^&*()_+|<>,.?/:;'\\[\\]{}\"]+.*";
+            if (password == null || password.length() < 6 || password.length() > 10) return false;
+            int i = 0;
+            if (password.matches(REG_NUMBER)) i++;
+            if (password.matches(REG_LOWERCASE))i++;
+            if (password.matches(REG_UPPERCASE)) i++;
+            //if (password.matches(REG_SYMBOL)) i++;
+            if (i  < 3 )  return false;
+            return true;
         }
     }
 }

@@ -1,0 +1,27 @@
+
+.but-group{
+   -fx-font-size:16px;
+   -fx-padding:40px;
+   -fx-spacing:40px;
+   -fx-background-color: transparent;
+}
+.left-but, .center-but, .right-but{
+    -fx-pref-width:64px;
+    -fx-pref-height:64px;
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #9becfcff 0.0%, #64c7f8ff 50.0%, #0253d5ff 100.0%);
+    -fx-background-insets: 0;
+    -fx-background-radius: 50px;
+    -fx-text-fill: rgb(255,255,255);
+}
+.left-but:hover, .center-but:hover, .right-but:hover{
+    -fx-cursor:hand;
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #fa476cff 0.0%, #405ffdff 100.0%);
+}
+.left-but:pressed, .center-but:pressed, .right-but:pressed{
+    -fx-cursor:hand;
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #f94d4aff 0.0%, #338eeeff 100.0%);
+}
+.left-but > .ikonli-font-icon, .center-but > .ikonli-font-icon, .right-but > .ikonli-font-icon{
+    -fx-icon-color:rgb(255,255,255);
+    -fx-icon-size: 32px;
+}

@@ -1,0 +1,177 @@
+*{
+    base-color:linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #5ee7df 0.0%, #b490ca 100.0%);
+    used-color:linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #a8edea 0.0%, #fed6e3 100.0%);
+    tuichu-color:linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #30cfd0 0.0%, #330867 100.0%);
+    choose-color:linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #84fab0 0.0%, #8fd3f4 100.0%);
+    back-color1:linear-gradient(from 0.0% 0.0% to 20.0% 20.0%, #93a5cf 0.0%, #e4efe9 100.0%);
+    back-color2:linear-gradient(from 30.0% 30.0% to 100.0% 50.0%, #fffeff 0.0%, #D7fffe 100.0%);
+    choose-color2:linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #4facfe 0.0%, #00f2fe 100.0%);
+    shengcheng-color:linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #fa709a 0.0%, #fee140 100.0%);
+}
+.container{
+   -fx-background-color:rgb(255,255,255);
+}
+.cover-pane{
+   -fx-pref-width:800px;
+   -fx-pref-height:600px;
+   -fx-background-image: url(../img/Login_4.png);
+   -fx-background-size:cover;
+}
+.main-container{
+   -fx-max-width:400px;
+   -fx-pref-height:600px;
+   -fx-spacing:20px;
+   -fx-padding: 0px 40px 0px 40px;
+}
+.login-but{
+    -fx-font-size: 16px;
+    -fx-pref-height:50px;
+    -fx-pref-width:150px;
+    -fx-background-color: transparent;
+    -fx-background-radius:25px;
+    -fx-border-color: rgb(255,255,255);
+    -fx-text-fill: rgb(255,255,255);
+    -fx-border-width:1.5px;
+    -fx-border-radius:25px;
+}
+.login-but:hover{
+    -fx-border-color: base-color;
+    -fx-text-fill: base-color;
+}
+
+.top-box{-fx-spacing:10px;-fx-padding:10px;}
+.hide-but, .close-but{
+    -fx-padding:0px;
+    -fx-background-color:transparent;
+}
+.hide-but:hover, .close-but:hover, .forget{
+    -fx-cursor:hand;
+}
+.hide-but > .ikonli-font-icon, .close-but > .ikonli-font-icon{
+    -fx-icon-size: 16px;
+}
+.logo{
+    -fx-max-width:40px;
+    -fx-pref-height:40px;
+    -fx-background-image: url(../img/Login_4_logo.png);
+    -fx-background-size:cover;
+}
+.third-box{
+    -fx-alignment:center;
+    -fx-spacing:10px;
+}
+.title-label{
+    -fx-font-size:30px;
+    -fx-font-weight: 800;
+    -fx-text-fill: base-color;
+}
+.wb-label:hover,.zfb-label:hover,.qq-label:hover,.dd-label:hover{
+    -fx-cursor:hand;
+}
+.wb-label > .ikonli-font-icon,.zfb-label > .ikonli-font-icon,.qq-label > .ikonli-font-icon,.dd-label > .ikonli-font-icon{
+    -fx-icon-size: 30px;
+    -fx-icon-color: base-color;
+    -fx-cursor:hand;
+}
+.email-label{
+    -fx-font-size:14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: rgb(182,182,182);
+}
+/*输入框内容*/
+.user-box, .psw-box{
+    -fx-border-width: 1.5px;
+    -fx-border-color: rgb(182,182,182);
+    -fx-pref-height: 35px;
+    -fx-border-radius: 25px;
+    -fx-alignment: center;
+    -fx-padding:0 0 0 10px;
+    -fx-background-color:rgb(243,243,243);
+    -fx-background-radius:25px;
+    -fx-padding: 0px 15px 0px 15px;
+}
+
+.user-field, .psw-field{
+    -fx-pref-height: 50px;
+    -fx-border-width: 0;
+    -fx-text-fill: #606266;
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-padding: 0px 8px 0px 0px;
+}
+.user-label, .psw-label{
+    -fx-alignment:center;
+    -fx-border-width:0;
+    -fx-padding: 0px 13px 0px 0px;
+}
+.user-label  > .ikonli-font-icon, .psw-label  > .ikonli-font-icon{
+    -fx-icon-size: 22px;
+    -fx-icon-color: rgb(182,182,182);
+}
+.forget{
+    -fx-background-color: transparent;
+    -fx-font-size:11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: rgb(182,182,182);
+}
+
+.login{
+    -fx-font-size: 12px;
+    -fx-pref-height:50px;
+    -fx-pref-width:150px;
+    -fx-background-color: base-color;
+    -fx-background-radius:25px;
+    -fx-text-fill: rgb(255,255,255);
+}
+.login:hover{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0), 10.0, 0, 0, 0);
+}
+.message{
+    -fx-pref-height: 60px;
+    -fx-font-weight: 600;
+    -fx-text-fill:red;
+    -fx-alignment:center;
+}
+.normal{
+    -fx-font-size: 12px;
+    -fx-background-color: base-color;
+    -fx-background-radius:25px;
+    -fx-text-fill: rgb(255,255,255);
+}
+.normal2{
+    -fx-font-size: 12px;
+    -fx-background-color: used-color;
+    -fx-background-radius:25px;
+    -fx-text-fill: rgb(255,255,255);
+}
+.choosebutton
+{
+    -fx-background-color: choose-color2;
+    -fx-text-fill: rgb(255,255,255);
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+}
+.shengcheng{
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #d299c2 0.0%, #fef9d7 100.0%);
+    -fx-text-fill: rgb(255,255,255);
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+}
+.tuichu{
+    -fx-background-color: tuichu-color;
+    -fx-text-fill: rgb(255,255,255);
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+}
+.chuzhong{
+    -fx-background-color: linear-gradient(to right, #2CD8D5 0%, #6B8DD6 48%, #8E37D7 100%);
+    -fx-text-fill: rgb(255,255,255);
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+}
+.zhenshengcheng{
+    -fx-background-color: shengcheng-color;
+    -fx-text-fill: rgb(255,255,255);
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+}

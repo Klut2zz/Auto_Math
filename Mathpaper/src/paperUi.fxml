@@ -84,9 +84,9 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="274.0" prefWidth="553.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="274.0" prefWidth="553.0" stylesheets="@bootstrapfx.css" VBox.vgrow="ALWAYS">
       <children>
-            <Label fx:id="questionLabel" layoutX="186.0" layoutY="104.0" prefHeight="23.0" prefWidth="257.0" text="题目" />
+            <Label fx:id="questionLabel" layoutX="186.0" layoutY="104.0" prefHeight="23.0" prefWidth="257.0" styleClass="h4" text="题目" />
             <RadioButton fx:id="toggleA" layoutX="186.0" layoutY="180.0" mnemonicParsing="false" text="A.">
                <toggleGroup>
                   <ToggleGroup fx:id="TogGroup" />

@@ -58,7 +58,7 @@ public class Question {
                 }
                 opStack.pop();
             }else {
-                while (!opStack.isEmpty() && opPriority.get(opStack.peek()) > opPriority.get(str)){
+                while (!opStack.isEmpty() && opPriority.get(opStack.peek()) >= opPriority.get(str)){
                     suffixList.add(opStack.pop());
                 }
                 opStack.push(str);
