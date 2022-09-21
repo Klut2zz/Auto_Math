@@ -42,7 +42,7 @@ public class chooseUiController {
     @FXML
     public void initialize(){
         imageView.setImage(
-                new Image("F:\\Auto_Math7\\Mathpaper\\image\\back3.png")
+                new Image("css/Image/back3.png")
         );
     }
 }

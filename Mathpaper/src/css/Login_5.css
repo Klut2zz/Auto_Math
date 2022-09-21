@@ -1,0 +1,135 @@
+*{
+    green-color:#67C23A;
+    green-thin-color:#d1edc4;
+}
+.container{
+   -fx-font-size: 16px;
+   -fx-font-weight: 600;
+   -fx-font-family: "cursive";/*sans-serif,cursive,fantasy,monospace*/
+   -fx-pref-width:400px;
+   -fx-pref-height:600px;
+   -fx-padding:40px;
+   -fx-spacing:20px;
+   -fx-background-color:rgb(255,255,255);
+   -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10.0, 0, 0, 0);
+   -fx-alignment:center;
+   -fx-background-radius: 4px;
+}
+.top-box{-fx-spacing:10px;-fx-padding:10px;}
+.hide-but, .close-but{
+    -fx-padding:0px;
+    -fx-min-width:20px;
+    -fx-min-height:20px;
+    -fx-background-radius:10px;
+}
+.hide-but{-fx-background-color:green-thin-color;}
+.close-but{-fx-background-color:#F56C6C;}
+.hide-but:hover, .close-but:hover{
+    -fx-cursor:hand;
+}
+.hide-but > .ikonli-font-icon, .close-but > .ikonli-font-icon{
+    -fx-icon-size: 14px;
+    -fx-icon-color:rgb(255,255,255);
+}
+.logo{
+    -fx-max-width:80px;
+    -fx-pref-height:80px;
+    -fx-background-image: url(../img/Login_5.png);
+    -fx-background-size:cover;
+}
+.title-label{
+    -fx-font-size:30px;
+    -fx-font-weight: 700;
+    -fx-text-fill: green-color;
+}
+/**/
+.user-ap-box, .psw-ap-box{
+    -fx-max-width:300px;
+}
+.psw-title, .user-title{
+    -fx-alignment:center;
+    -fx-pref-width:40px;
+    -fx-pref-height:20px;
+    -fx-padding:2px;
+    -fx-font-size:12px;
+    -fx-background-color:green-color;
+    -fx-text-fill: rgb(255,255,255);
+    -fx-background-radius: 2px;
+}
+.user-box, .psw-box{
+    -fx-pref-width:300px;
+    -fx-border-width: 1.5px;
+    -fx-border-color: green-thin-color;
+    -fx-pref-height: 45px;
+    -fx-border-radius: 4px;
+    -fx-alignment: center;
+    -fx-padding:0 0 0 10px;
+}
+.user-field, .psw-field{
+    -fx-pref-height: 45px;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #606266;
+}
+.user-label, .psw-label{
+    -fx-alignment:center;
+    -fx-border-width:0;
+}
+.user-label  > .ikonli-font-icon, .psw-label  > .ikonli-font-icon{
+    -fx-icon-size: 25px;
+    -fx-icon-color: green-thin-color;
+}
+.login-box{
+    -fx-max-width:300px;
+}
+.login-but{
+    -fx-background-insets: 0;
+    -fx-pref-height: 45px;
+    -fx-pref-width:300px;
+    -fx-background-color:green-color;
+    -fx-border-radius: 4px;
+    -fx-text-fill: rgb(255,255,255);
+}
+.login-but:hover{
+    -fx-background-color:derive(green-color, -10%);
+}
+.fw-box{
+    -fx-alignment:center-left;
+    -fx-max-width:300px;
+}
+.fw-label{
+    -fx-font-size:14px;
+}
+.fw-link{
+    -fx-text-fill:green-color;
+    -fx-font-size:14px;
+    -fx-padding:0px;
+    -fx-border-width:0px;
+}
+.third-box{
+   -fx-padding:10px 0px 0px 0px;
+   -fx-spacing:20px;
+}
+.dd-but, .wx-but, .zfb-but{
+    -fx-min-width:32px;
+    -fx-pref-height:32px;
+    -fx-background-size:cover;
+    -fx-background-color:transparent;
+}
+.dd-but{-fx-background-image: url(../img/Login_5_dd.png);}
+.wx-but{-fx-background-image: url(../img/Login_5_wx.png);}
+.zfb-but{-fx-background-image: url(../img/Login_5_zfb.png);}
+
+.bottom-box{
+    -fx-max-width:300px;
+    -fx-spacing:15px;
+    -fx-alignment:center;
+    -fx-padding:20px;
+}
+.forget, .email, .register{
+    -fx-font-size:14px;
+    -fx-text-fill:green-color;
+}
+.forget:hover, .email:hover, .register:hover,.dd-but:hover, .wx-but:hover, .zfb-but:hover{
+    -fx-cursor:hand;
+}

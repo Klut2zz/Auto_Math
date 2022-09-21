@@ -10,13 +10,13 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="243.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="276.0" prefWidth="415.0" styleClass="alert-info" stylesheets="@bootstrapfx.css">
+      <AnchorPane prefHeight="276.0" prefWidth="415.0" styleClass="container" stylesheets="@css/Login_1.css">
          <children>
-            <Button fx:id="changeBtn" layoutX="160.0" layoutY="163.0" mnemonicParsing="false" styleClass="btn-primary" stylesheets="@bootstrapfx.css" text="确认修改" />
-            <TextField fx:id="oldPsw" layoutX="123.0" layoutY="55.0" styleClass="context-menu" />
-            <PasswordField fx:id="newPsw1" layoutX="123.0" layoutY="90.0" promptText="请输入新的密码" styleClass="context-menu" />
-            <PasswordField fx:id="newPsw2" layoutX="123.0" layoutY="127.0" promptText="再次输入新密码" styleClass="context-menu" />
-            <Label layoutX="75.0" layoutY="59.0" text="原密码：" />
+            <Button fx:id="changeBtn" layoutX="160.0" layoutY="163.0" mnemonicParsing="false" styleClass="login" text="确认修改" />
+            <TextField fx:id="oldPsw" layoutX="123.0" layoutY="55.0" />
+            <PasswordField fx:id="newPsw1" layoutX="123.0" layoutY="90.0" promptText="请输入新的密码" styleClass="register-1" />
+            <PasswordField fx:id="newPsw2" layoutX="123.0" layoutY="127.0" promptText="再次输入新密码" />
+            <Label layoutX="75.0" layoutY="59.0" styleClass="other-label" text="原密码：" />
             <Label layoutX="75.0" layoutY="94.0" text="新密码：" />
          </children>
       </AnchorPane>

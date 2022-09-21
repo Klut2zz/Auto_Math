@@ -1,0 +1,151 @@
+
+*{
+   base-color: #A8ABB2;
+   /*默认文字颜色*/
+   -fx-text-fill: base-color;
+}
+.container{
+   -fx-font-size: 14px;
+   -fx-font-weight: 500;
+   -fx-font-family: "cursive";/*sans-serif,cursive,fantasy,monospace*/
+   -fx-background-color:rgb(255,255,255);
+   /*-fx-effect: dropshadow(three-pass-box, #606266, 10.0,0, 0, 0);*/
+}
+.left-container,.right-container{
+    -fx-pref-width:400px;
+    -fx-pref-height:450px;
+}
+.left-container{
+    -fx-padding:10px;
+}
+.right-container{
+    -fx-background-image:url(../img/Login_1.png);
+    -fx-background-size:cover;
+    -fx-padding:20px;
+}
+.message{
+    -fx-pref-width:240px;
+    -fx-pref-height:35px;
+    -fx-background-color: derive(#F56C6C, 80%);
+    -fx-text-fill:#F56C6C;
+    -fx-background-radius: 2px;
+    -fx-alignment:center;
+}
+.close{
+    -fx-padding:0px;
+    -fx-background-color:transparent;
+}
+.close:hover,.remember:hover{-fx-cursor:hand;}
+.close > .ikonli-font-icon{
+    -fx-icon-size: 16px;
+    -fx-icon-color: base-color;
+}
+.main{
+    -fx-alignment:top-center;
+    -fx-max-width:240px;
+    -fx-spacing:15px;
+    -fx-padding: 15px 0 0 0;
+}
+.user-field, .psw-field{
+    -fx-pref-height: 35px;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #606266;
+}
+.user-hbox, .psw-hbox{
+    -fx-border-width: 1.5px;
+    -fx-border-color: #c6e2ff;
+    -fx-pref-height: 35px;
+    -fx-border-radius: 4px;
+    -fx-alignment: center;
+}
+.user-label, .psw-label{
+    -fx-alignment:center;
+    -fx-min-width: 40px;
+    -fx-pref-height: 35px;
+    -fx-border-width: 0 1.5px 0 0;
+    -fx-border-color: #c6e2ff;
+}
+.user-label  > .ikonli-font-icon, .psw-label  > .ikonli-font-icon{
+    -fx-icon-size: 20px;
+    -fx-icon-color: #c6e2ff;
+}
+.remember > .box {
+    -fx-pref-width:0;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+.remember > .box > .mark{
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-pref-width:0;
+}
+.remember > .ikonli-font-icon{
+    -fx-icon-color: base-color;
+    -fx-icon-size: 18px;
+}
+.remember:selected > .ikonli-font-icon, .remember:selected{
+    -fx-icon-color: #409EFF;
+    -fx-text-fill: #409EFF;
+}
+.login{
+    -fx-background-color:#409EFF;
+    -fx-pref-height:35px;
+    -fx-pref-width:80px;
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+.login > .ikonli-font-icon{
+    -fx-icon-size: 16px;
+    -fx-icon-color: rgb(255, 255, 255);
+}
+.login:hover{
+    -fx-effect: dropshadow(three-pass-box, base-color, 10.0,0, 0, 0);
+}
+.register, .forget{
+    -fx-padding:0px;
+    -fx-border-width:0;
+    -fx-cursor:hand;
+}
+.register{-fx-text-fill: #409EFF;}
+.qt-label{
+    -fx-padding:10px;
+}
+.zfb-but, .wx-but, .wb-but{
+    -fx-pref-height:35px;
+    -fx-pref-width:240px;
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+.zfb-but{-fx-background-color:rgb(22,119,255);}
+.wx-but{-fx-background-color:rgb(42,174,103);}
+.wb-but{-fx-background-color:rgb(235,25,45);}
+.zfb-but > .ikonli-font-icon, .wx-but > .ikonli-font-icon, .wb-but > .ikonli-font-icon{
+    -fx-icon-size: 16px;
+    -fx-icon-color: rgb(255, 255, 255);
+}
+.zfb-but:hover, .wx-but:hover, .wb-but:hover{
+    -fx-effect: dropshadow(three-pass-box, base-color, 10.0,0, 0, 0);
+}
+
+.other{
+    -fx-min-width:800px;
+    -fx-min-height:450px;
+    -fx-alignment:center;
+    -fx-background-color:rgba(0,0,0,0.8);
+    -fx-spacing:20px;
+}
+.other-label > .ikonli-font-icon{
+    -fx-icon-size: 30px;
+    -fx-icon-color: #409EFF;
+}
+.other-pane{
+    -fx-max-width:200px;
+    -fx-pref-height:200px;
+}

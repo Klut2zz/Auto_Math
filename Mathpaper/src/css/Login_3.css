@@ -1,0 +1,144 @@
+*{
+    cf-blue:#409EFF;
+    cf-thin-blue:#c6e2ff;
+    cf-red:#F56C6C;
+    cf-black:#606266;
+}
+.container{
+   -fx-font-size: 15px;
+   -fx-font-weight: 700;
+   -fx-font-family: "cursive";/*sans-serif,cursive,fantasy,monospace*/
+   -fx-pref-width:400px;
+   -fx-pref-height:650px;
+   -fx-padding:40px;
+   -fx-spacing:20px;
+   -fx-background-color:rgb(255,255,255);
+   -fx-effect: dropshadow(three-pass-box, cf-black, 10.0, 0, 0, 0);
+}
+.top-box{-fx-spacing:10px;-fx-padding:10px;}
+.hide-but, .close-but{
+    -fx-padding:0px;
+    -fx-background-color:transparent;
+}
+.hide-but:hover, .close-but:hover{
+    -fx-cursor:hand;
+}
+.hide-but > .ikonli-font-icon, .close-but > .ikonli-font-icon{
+    -fx-icon-size: 16px;
+}
+.title-label{
+   -fx-font-size: 17px;
+   -fx-font-weight: 700;
+   -fx-text-fill: cf-blue;
+}
+.account-type-box{
+    -fx-spacing:20px;
+}
+.admin-box, .civilian-box{
+    -fx-pref-width:150px;
+    -fx-pref-height:150px;
+    -fx-border-width:1.5px;
+    -fx-border-color:cf-thin-blue;
+    -fx-border-radius:3px;
+    -fx-alignment:center;
+    -fx-spacing:10px;
+    -fx-padding:10px;
+}
+.admin-box:hover, .civilian-box:hover{
+    -fx-border-color:cf-blue;
+}
+.admin-img{
+    -fx-background-image: url(../img/Login_3_admin.png);
+}
+.civilian-img{
+    -fx-background-image: url(../img/Login_3_user.png);
+}
+.admin-img, .civilian-img{
+    -fx-max-width:100px;
+    -fx-pref-height:100px;
+    -fx-background-size:cover;
+}
+.admin-label, .civilian-label{
+   -fx-text-fill: cf-black
+}
+.prompt-label{
+   -fx-text-fill: #A8ABB2;
+}
+.admin-check-label, .civilian-check-label{
+    -fx-pref-width:30px;
+    -fx-pref-height:30px;
+    -fx-background-radius:15px;
+    -fx-background-color:#E4E7ED;
+    -fx-alignment:center;
+}
+.admin-check-label > .ikonli-font-icon, .civilian-check-label > .ikonli-font-icon{
+    -fx-icon-color: rgb(255,255,255);
+}
+
+/**/
+.user-box, .psw-box{
+    -fx-border-width: 1.5px;
+    -fx-border-color: cf-thin-blue;
+    -fx-pref-height: 50px;
+    -fx-border-radius: 4px;
+    -fx-alignment: center;
+    -fx-padding:0 0 0 10px;
+}
+.user-field, .psw-field{
+    -fx-pref-height: 50px;
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+    -fx-text-fill: #606266;
+}
+.user-label, .psw-label{
+    -fx-alignment:center;
+    -fx-border-width:0;
+}
+.user-label  > .ikonli-font-icon, .psw-label  > .ikonli-font-icon{
+    -fx-icon-size: 20px;
+    -fx-icon-color: cf-thin-blue;
+}
+.separator:vertical{
+    -fx-padding:10px 0px 10px 0px;
+}
+.separator:vertical .line{
+    -fx-border-color: cf-thin-blue;
+    -fx-border-width: 0 0 0 1.5px;
+    -fx-padding: 0px 0px 0px 10px;
+}
+.forget-but{
+    -fx-background-color:transparent;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: cf-blue;
+    -fx-padding:0px 3px 0px 3px;
+    -fx-text-fill: cf-blue;
+}
+.forget-but:hover{
+    -fx-cursor:hand;
+}
+.register-but{
+    -fx-background-color:transparent;
+    -fx-text-fill: cf-blue;
+    -fx-padding: 0px;
+}
+.register-but:hover{
+    -fx-cursor:hand;
+}
+.login-but{
+    -fx-background-insets: 0;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 100px;
+    -fx-background-color:cf-blue;
+    -fx-border-radius: 4px;
+    -fx-text-fill: rgb(255,255,255);
+}
+.login-but:hover{
+    -fx-cursor:hand;
+}
+.message{
+    -fx-pref-height: 60px;
+    -fx-font-weight: 600;
+    -fx-text-fill:cf-red;
+    -fx-alignment:center;
+}

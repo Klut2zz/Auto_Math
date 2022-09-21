@@ -1,0 +1,125 @@
+
+.container{
+   -fx-font-size: 14px;
+   -fx-font-weight: 800;
+   -fx-font-family: "cursive";/*sans-serif,cursive,fantasy,monospace*/
+   -fx-pref-width:800px;
+   -fx-pref-height:550px;
+   -fx-background-image: url(../img/Login_2.jpg);
+   -fx-background-size:cover;
+}
+.main{
+   -fx-max-width:400px;
+   -fx-pref-height:550px;
+}
+.hide-but, .close-but{
+    -fx-background-color:transparent;
+    -fx-background-radius:0;
+}
+.hide-but:hover{
+    -fx-background-color:rgba(255, 255, 255,0.2);
+}
+.close-but:hover{
+    -fx-background-color:rgba(245, 108, 108,0.8)
+}
+.content{
+    -fx-padding:0 0 20px 0;
+    -fx-background-color:rgb(255, 255, 255);
+    -fx-background-radius: 6px;
+    -fx-max-width:300px;
+    -fx-max-height:0;
+    -fx-spacing:20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 20.0, 0, 0, 0);
+}
+.content-1{
+    -fx-max-width:300px;
+    -fx-max-height:0;
+    -fx-spacing:20px;
+}
+.title-pane{
+    -fx-min-height:60px;
+    -fx-padding:0px 15px 0px 15px;
+    -fx-background-color:rgb(255, 255, 255);
+    -fx-background-radius: 6px 6px 0px 0px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 40, 0, 10, 0);
+}
+.about-but, .help-but{
+    -fx-padding:0px;
+    -fx-background-color:transparent;
+}
+.about-but{-fx-text-fill: rgb(255,186,51);}
+.help-but{-fx-text-fill: #A8ABB2;}
+.about-but:hover, .help-but:hover{
+    -fx-cursor:hand;
+}
+.user-box{
+    -fx-padding:15px 15px 0px 15px;
+}
+.psw-box{
+    -fx-padding:0px 15px 15px 15px;
+}
+.user-field, .psw-field{
+    -fx-min-height:40px;
+    -fx-text-fill: rgb(26,83,92);
+    -fx-border-radius: 3px;
+}
+.user-field:focused, .psw-field:focused{
+    -fx-border-color:rgb(26,83,92);
+}
+.psw-field{
+    -fx-padding:0 30px 0 10px;
+}
+.eye-box{
+    -fx-max-width:0px;
+    -fx-background-color:red;
+}
+.psw-eye{
+    -fx-padding:0 10px 0 0px;
+    -fx-background-color:null;
+}
+.psw-eye > .ikonli-font-icon{
+    -fx-icon-size: 20px;
+    -fx-icon-color: rgb(26,83,92);
+}
+.psw-eye:hover > .ikonli-font-icon{
+    -fx-icon-color: rgb(255,186,51);
+}
+.login{
+    -fx-background-insets: 0;
+    -fx-font-size: 16px;
+    -fx-text-fill: rgb(255,255,255);
+    -fx-min-height: 40px;
+    -fx-pref-width: 270px;
+    -fx-background-color: rgb(26,83,92);
+}
+.login:hover{
+    -fx-background-color: rgba(26,83,92,0.9);
+}
+.register{
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(255,255,255);
+}
+.register-1{
+    -fx-padding:0px;
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(26,83,92);
+}
+.register:hover,.register-1:hover{
+    -fx-cursor:hand;
+}
+.mess-box{
+    -fx-spacing:10px;
+    -fx-padding:15px;
+}
+.message{
+    -fx-pref-width:240px;
+    -fx-pref-height:35px;
+    -fx-background-color: rgba(26,83,92,0.5);
+    -fx-text-fill:#F2F6FC;
+    -fx-background-radius: 2px;
+    -fx-alignment:center;
+}
+.message > .ikonli-font-icon{
+    -fx-icon-size: 15px;
+    -fx-icon-color: #F2F6FC;
+}

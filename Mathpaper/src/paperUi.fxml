@@ -34,69 +34,33 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="paperUiController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="274.0" prefWidth="553.0" stylesheets="@bootstrapfx.css" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="274.0" prefWidth="553.0" stylesheets="@css/bootstrapfx.css" VBox.vgrow="ALWAYS">
       <children>
-            <Label fx:id="questionLabel" layoutX="186.0" layoutY="104.0" prefHeight="23.0" prefWidth="257.0" styleClass="h4" text="题目" />
-            <RadioButton fx:id="toggleA" layoutX="186.0" layoutY="180.0" mnemonicParsing="false" text="A.">
+            <ImageView fitHeight="402.0" fitWidth="664.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@css/Image/bk2.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="questionLabel" layoutX="186.0" layoutY="104.0" prefHeight="25.0" prefWidth="315.0" styleClass="context-menu" text="题目" />
+            <RadioButton fx:id="toggleA" layoutX="186.0" layoutY="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="131.0" styleClass="tooltip-danger" stylesheets="@css/bootstrapfx.css" text="A.">
                <toggleGroup>
                   <ToggleGroup fx:id="TogGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="toggleB" layoutX="368.0" layoutY="180.0" mnemonicParsing="false" text="B." toggleGroup="$TogGroup" />
-            <RadioButton fx:id="toggleC" layoutX="187.0" layoutY="238.0" mnemonicParsing="false" text="C." toggleGroup="$TogGroup" />
-            <RadioButton fx:id="toggleD" layoutX="367.0" layoutY="238.0" mnemonicParsing="false" text="D." toggleGroup="$TogGroup" />
-            <Button fx:id="nextButton" layoutX="259.0" layoutY="283.0" mnemonicParsing="false" onAction="#nextEvent" prefHeight="23.0" prefWidth="122.0" text="下一题" />
-            <Button fx:id="finishButton" layoutX="449.0" layoutY="283.0" mnemonicParsing="false" onAction="#finishEvent" text="提交" />
+            <RadioButton fx:id="toggleB" layoutX="368.0" layoutY="180.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="131.0" styleClass="tooltip-warning" text="B." toggleGroup="$TogGroup" />
+            <RadioButton fx:id="toggleC" layoutX="187.0" layoutY="238.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="131.0" styleClass="tooltip-success" text="C." toggleGroup="$TogGroup" />
+            <RadioButton fx:id="toggleD" layoutX="367.0" layoutY="238.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="131.0" styleClass="tooltip-info" text="D." toggleGroup="$TogGroup" />
+            <Button fx:id="nextButton" layoutX="259.0" layoutY="283.0" mnemonicParsing="false" onAction="#nextEvent" prefHeight="23.0" prefWidth="122.0" styleClass="alert-danger" text="下一题" />
+            <Button fx:id="finishButton" layoutX="449.0" layoutY="283.0" mnemonicParsing="false" onAction="#finishEvent" styleClass="alert-warning" text="提交" />
       </children>
     </AnchorPane>
   </children>

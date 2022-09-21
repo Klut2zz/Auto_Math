@@ -47,7 +47,7 @@
          <children>
             <Pane prefHeight="360.0" prefWidth="640.0" styleClass="container" stylesheets="@Login_4.css">
                <children>
-                  <ImageView fitHeight="362.0" fitWidth="646.0" opacity="0.36" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageView" fitHeight="362.0" fitWidth="646.0" opacity="0.36" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/back3.png" />
                      </image>

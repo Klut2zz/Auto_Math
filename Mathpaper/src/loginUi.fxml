@@ -34,7 +34,10 @@
          </effect>
          <padding>
             <Insets left="30.0" />
-         </padding></PasswordField>
+         </padding>
+         <font>
+            <Font name="SimSun" size="15.0" />
+         </font></PasswordField>
       <Button fx:id="registerButton" layoutX="153.0" layoutY="341.0" mnemonicParsing="false" styleClass="registerBtn" text="没有账号?立即注册" textFill="#bcbcbc">
          <font>
             <Font name="Yu Gothic Light" size="15.0" />

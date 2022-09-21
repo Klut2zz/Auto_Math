@@ -42,6 +42,9 @@ public class MainUi extends Application{
             Button registerButton = (Button)root.lookup("#registerButton");
             TextField textId = (TextField)root.lookup("#textId");
             PasswordField textPsw = (PasswordField)root.lookup("#textPsw");
+            Button miniBtn = (Button)root.lookup("#miniBtn");
+            Button closeBtn = (Button)root.lookup("#closeBtn");
+
 
             //登陆按键事件
             loginButton.setOnAction(e ->{
@@ -82,13 +85,19 @@ public class MainUi extends Application{
                 }
             });
 
+            miniBtn.setOnAction(e -> {
+                primaryStage.setIconified(true);
+            });
+
+            closeBtn.setOnAction(e -> {
+                primaryStage.close();
+            });
+
             Scene scene = new Scene(root);
             //scene.getStylesheets().add("D:\\Java_Proj\\Auto_Math\\Mathpaper\\src\\bootstrapfx.css");
             //scene.getStylesheets().add(getClass().getResource("bootstrapfx.css").toExternalForm());
-            primaryStage.getIcons().add(new Image("F:\\Auto_Math7\\Mathpaper\\image\\icon.png"));//标题logo
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);//设置不能窗口改变大小
-            primaryStage.setTitle("HNU-试卷生成软件");//设置标题
             primaryStage.show();
 
         } catch(Exception e) {
@@ -131,32 +140,38 @@ public class MainUi extends Application{
             regButton.setOnAction(e -> {
                 boolean flag = true;
                 try {
-                    if(conDB.checkaccount(textId.getText())){
-                        if(textPsw1.getText().trim().length()>=6&&textPsw1.getText().trim().length()<=10){
-                            if(textPsw1.getText().trim().equals(textPsw2.getText())){
-                                if(passwordcheck()){
-                                    flag = true;
+                    if(!textId.getText().trim().equals("")){
+                        if(conDB.checkaccount(textId.getText())){
+                            if(textPsw1.getText().trim().length()>=6&&textPsw1.getText().trim().length()<=10){
+                                if(textPsw1.getText().trim().equals(textPsw2.getText())){
+                                    if(passwordcheck()){
+                                        flag = true;
+                                    } else {
+                                        flag = false;
+                                        Alert alert = new Alert(Alert.AlertType.ERROR, "密码中应含有数字和大小写字母");
+                                        alert.getDialogPane().setGraphic(new ImageView("css/Image/youzhezhongshi.png"));
+                                        alert.showAndWait();
+                                    }
                                 } else {
                                     flag = false;
-                                    Alert alert = new Alert(Alert.AlertType.ERROR, "密码中应含有数字和大小写字母");
-                                    alert.getDialogPane().setGraphic(new ImageView("F:\\Auto_Math7\\Mathpaper\\image\\youzhezhongshi.png"));
+                                    Alert alert = new Alert(Alert.AlertType.ERROR, "两次输入密码不同");
+                                    alert.getDialogPane().setGraphic(new ImageView("css/Image/xingle.png"));
                                     alert.showAndWait();
                                 }
                             } else {
                                 flag = false;
-                                Alert alert = new Alert(Alert.AlertType.ERROR, "两次输入密码不同");
-                                alert.getDialogPane().setGraphic(new ImageView("F:\\Auto_Math7\\Mathpaper\\image\\xingle.png"));
+                                Alert alert = new Alert(Alert.AlertType.ERROR, "密码长度应为6-10位");
+                                alert.getDialogPane().setGraphic(new ImageView("css/Image/xixi.png"));
                                 alert.showAndWait();
                             }
                         } else {
                             flag = false;
-                            Alert alert = new Alert(Alert.AlertType.ERROR, "密码长度应为6-10位");
-                            alert.getDialogPane().setGraphic(new ImageView("F:\\Auto_Math7\\Mathpaper\\image\\xixi.png"));
+                            Alert alert = new Alert(Alert.AlertType.ERROR, "用户名已存在");
                             alert.showAndWait();
                         }
                     } else {
                         flag = false;
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "用户名已存在");
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "用户名不能为空！");
                         alert.showAndWait();
                     }
                 } catch (Exception ex) {
@@ -183,8 +198,9 @@ public class MainUi extends Application{
                     }
                 }
             });
+            stage.getIcons().add(new Image("css/Image/icon.png"));//标题logo
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.getIcons().add(new Image("F:\\Auto_Math7\\Mathpaper\\image\\icon.png"));//标题logo
+            stage.setResizable(false);//设置不能窗口改变大小
             stage.show();
         }
 
@@ -275,7 +291,7 @@ public class MainUi extends Application{
                     }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "数量应该在10-30之间");
-                    alert.getDialogPane().setGraphic(new ImageView("F:\\Auto_Math7\\Mathpaper\\image\\nixiaozi.png"));
+                    alert.getDialogPane().setGraphic(new ImageView("css/Image/nixiaozi.png"));
                     alert.showAndWait();
                 }
             });
@@ -294,7 +310,8 @@ public class MainUi extends Application{
                 stage.close();
             });
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.getIcons().add(new Image("F:\\Auto_Math7\\Mathpaper\\image\\icon.png"));//标题logo
+            stage.getIcons().add(new Image("css/Image/icon.png"));//标题logo
+            stage.setResizable(false);//设置不能窗口改变大小
             stage.show();
         }
     }
@@ -361,7 +378,7 @@ public class MainUi extends Application{
                 }
             });
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.getIcons().add(new Image("F:\\Auto_Math7\\Mathpaper\\image\\icon.png"));//标题logo
+            stage.setResizable(false);//设置不能窗口改变大小
             stage.show();
         }
         public int recodeChoice(){
@@ -384,7 +401,7 @@ public class MainUi extends Application{
             randAns[ansIndex] = ans;
             for(int i = 0;i < 4;i++){
                 if(randAns[i] == null)
-                    randAns[i] = String.valueOf(Math.random()*Double.parseDouble(ans)*(r.nextInt(5)-r.nextInt(10)));
+                    randAns[i] = String.format("%.2f", Math.random()*Double.parseDouble(ans)*(r.nextInt(5)-r.nextInt(10))+Math.random()*(Double.parseDouble(ans)+1) );
             }
             answer.add(ansIndex);
             toggleA.setText("A."+randAns[0]);
@@ -417,6 +434,8 @@ public class MainUi extends Application{
                 }
             });
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.getIcons().add(new Image("css/Image/icon.png"));//标题logo
+            stage.setResizable(false);//设置不能窗口改变大小
             stage.show();
         }
 
